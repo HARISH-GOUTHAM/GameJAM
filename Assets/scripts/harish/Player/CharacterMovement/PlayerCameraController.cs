@@ -21,7 +21,7 @@ public class PlayerCameraController : MonoBehaviour
     {
         inputManager = PlayerData.instance.inputManger;
         playerT = GetComponent<Transform>();
-
+        Cursor.lockState = CursorLockMode.Locked;
         inputManager.OnMouseMoveEv += GetMouseInput;
     }
 
@@ -49,7 +49,6 @@ public class PlayerCameraController : MonoBehaviour
     
     void GetMouseInput(Vector2 mouseInput)
     {
-        Debug.Log(mouseInput);
         this.mouseInput = mouseInput;
     }
     

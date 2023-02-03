@@ -15,16 +15,13 @@ namespace Input
         public event UnityAction<Vector2> OnMoveEv = delegate {  };
         
         private PlayerInputs _playerInputs;
+
         private void OnEnable()
         {
             _playerInputs = new PlayerInputs();
             _playerInputs.Enable();
-            _playerInputs.PlayerController.SetCallbacks( this);
+            _playerInputs.PlayerController.SetCallbacks(this);
         }
-
-       
-       
-       
 
         public void OnCamLook(InputAction.CallbackContext context)
         {

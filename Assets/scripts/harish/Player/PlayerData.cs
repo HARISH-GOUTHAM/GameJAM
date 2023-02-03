@@ -1,4 +1,5 @@
 using System;
+using Input;
 using UnityEngine;
 
 namespace harish.Player
@@ -9,7 +10,7 @@ namespace harish.Player
     {
         public static PlayerData instance;
 
-        
+        public InputManagerScriptable inputManger;
 
         private void Awake()
         {

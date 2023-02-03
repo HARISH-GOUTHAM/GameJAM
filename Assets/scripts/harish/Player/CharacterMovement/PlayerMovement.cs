@@ -8,13 +8,18 @@ public class PlayerMovement : MonoBehaviour
 {
     private Transform playerT;
     private CharacterController playerController;
-   
-    [SerializeField] InputManagerScriptable inputManager;
+
+    InputManagerScriptable inputManager;
     [SerializeField] private float moveSpeed = 10;
+    [SerializeField] private float gravity = -10;
+    [SerializeField] private float groundCheckDist = .51f;
     private Vector2 moveInp = Vector2.zero;
+    
+    
     
     void Start()
     {
+        inputManager = PlayerData.instance.inputManger;
         playerT = GetComponent<Transform>();
         playerController = GetComponent<CharacterController>();
 
@@ -26,11 +31,42 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Movement();
+        Gravity();
     }
 
+    private Vector3 velocity;
+    
+    void Gravity()
+    {
+        
+        if(IsGrounded() && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
+        
+        //add gravity
+        velocity.y += gravity * Time.deltaTime;
+        playerController.Move(velocity * Time.deltaTime);
+        
+        
+    }
+
+    bool IsGrounded()
+    {
+        //raycast to see if we are grounded
+        if(Physics.Raycast(playerT.position,Vector3.down, groundCheckDist))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
+    }
     void Movement()
     {
-        playerController.Move((playerT.forward * moveInp.y + playerT.right * moveInp.x) * moveSpeed);
+        playerController.Move((playerT.forward * moveInp.y + playerT.right * moveInp.x) * (moveSpeed * 0.01f));
     }
 
     void GetMoveInput(Vector2 move)

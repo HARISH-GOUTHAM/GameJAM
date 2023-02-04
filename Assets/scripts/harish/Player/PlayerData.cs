@@ -12,10 +12,13 @@ namespace harish.Player
         public float health = 50;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         public player_healthbar healthbar;
 =======
         public float mana = 100;
 >>>>>>> bbfeea35b850b9e77fb3a6efacff17cc14355b0f
+=======
+>>>>>>> parent of c326354f (Iam fucking done for today)
 =======
 >>>>>>> parent of c326354f (Iam fucking done for today)
         public InputManagerScriptable inputManger;

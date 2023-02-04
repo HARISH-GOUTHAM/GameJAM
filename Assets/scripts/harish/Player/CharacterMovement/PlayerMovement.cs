@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     
     void Start()
     {
+        Debug.Log("started");
         inputManager = PlayerData.instance.inputManger;
         playerT = GetComponent<Transform>();
         playerController = GetComponent<CharacterController>();
@@ -31,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         Movement();
+    
         Gravity();
     }
 
@@ -67,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
     void Movement()
     {
         playerController.Move((playerT.forward * moveInp.y + playerT.right * moveInp.x) * (moveSpeed * 0.01f));
+        Debug.Log("moved ig");
     }
 
     void GetMoveInput(Vector2 move)

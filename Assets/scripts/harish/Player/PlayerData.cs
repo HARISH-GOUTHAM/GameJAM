@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace harish.Player
 {
-   
-    
+
+
     public class PlayerData : MonoBehaviour
     {
         public static PlayerData instance;
@@ -25,8 +25,6 @@ namespace harish.Player
                 Destroy(this);
             }
         }
-        
-
-     
     }
 }
+        

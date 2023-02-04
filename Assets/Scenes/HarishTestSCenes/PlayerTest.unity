@@ -823,7 +823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 280933806679b7a4caac34d815159740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 2
+  state: 0
   patrolPoints:
   - {fileID: 740091941}
   - {fileID: 1924398406}
@@ -831,6 +831,7 @@ MonoBehaviour:
   - {fileID: 303773813}
   fov: 40
   visionRange: 10
+  health: 10
 --- !u!195 &1788551602
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1179,6 +1180,7 @@ MonoBehaviour:
   PlayerCam: {fileID: 1269305677}
   swordAnim: {fileID: 2048531163}
   swordSlashVFX: {fileID: 805480108}
+  damage: 5
   attackDelay: 1
   slashStartDelay: 0.3
 --- !u!1 &2063028099

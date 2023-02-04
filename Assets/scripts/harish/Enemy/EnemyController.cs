@@ -18,9 +18,13 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private List<Transform> patrolPoints;
     [SerializeField] private float fov;
     [SerializeField] private float visionRange = 10;
-
+    [SerializeField] private float attackRange = 2;
+    [SerializeField] private float attackSpeed = 1f;
+    [SerializeField] private float attackDamage = 10f;
     private Transform player;
     private NavMeshAgent agent;
+
+    public float health = 10;
     
     // Start is called before the first frame update
     void Start()
@@ -41,7 +45,14 @@ public class EnemyController : MonoBehaviour
         {
             Patrol();
         }
+        else
+        {
+            Debug.Log("ded");
+            agent.isStopped = true;
+            
+        }
         Vision();
+        DeadCheck();
     }
     
     int currentPatrolPoint = 0;
@@ -58,7 +69,16 @@ public class EnemyController : MonoBehaviour
         }        
     }
 
+  
 
+    void DeadCheck()
+    {
+        if (health <= 0)
+        {
+            state = EnemyState.dead;
+        }    
+    }
+    
     void Vision()
     {
         Debug.Log(Vector3.Angle(transform.forward, player.transform.position - transform.position));
@@ -78,14 +98,21 @@ public class EnemyController : MonoBehaviour
         
         
     }
-    
+
+    private float attackTime = 0;
     void ChasePlayer()
     {
+        
         agent.SetDestination(player.position);
         
-        if(agent.remainingDistance < 1f)
+        if(agent.remainingDistance < attackRange)
         {
-            //attack code here
+            if (Time.time - attackTime > attackSpeed)
+            {
+                PlayerData.instance.health -= attackDamage;
+                Debug.Log("damaged plaer");
+                attackTime = Time.time;
+            }    
         }
     }
 }

@@ -44,6 +44,16 @@ public class Sword : MonoBehaviour
         
     }
 
+    void DamageBoss()
+    {
+        if(Physics.Raycast(PlayerCam.position,PlayerCam.forward,out var hit, 2f))
+        {
+            if (hit.collider.CompareTag("Enemy"))
+            {
+                hit.collider.GetComponent<EnemyController>().health -= damage;
+            }
+        }
+    }    
     void DamageEnemy()
     {
         if(Physics.Raycast(PlayerCam.position,PlayerCam.forward,out var hit, 2f))

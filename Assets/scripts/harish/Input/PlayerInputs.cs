@@ -53,6 +53,15 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""swordAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""3d2d3b5b-ea89-48d2-b3fd-3ef917165833"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -132,6 +141,17 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""action"": ""movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7b48cda1-6074-4e0d-b44f-9f9e27fefcb4"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""swordAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -143,6 +163,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         m_PlayerController_CamLook = m_PlayerController.FindAction("CamLook", throwIfNotFound: true);
         m_PlayerController_Jump = m_PlayerController.FindAction("Jump", throwIfNotFound: true);
         m_PlayerController_movement = m_PlayerController.FindAction("movement", throwIfNotFound: true);
+        m_PlayerController_swordAttack = m_PlayerController.FindAction("swordAttack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -205,6 +226,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerController_CamLook;
     private readonly InputAction m_PlayerController_Jump;
     private readonly InputAction m_PlayerController_movement;
+    private readonly InputAction m_PlayerController_swordAttack;
     public struct PlayerControllerActions
     {
         private @PlayerInputs m_Wrapper;
@@ -212,6 +234,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         public InputAction @CamLook => m_Wrapper.m_PlayerController_CamLook;
         public InputAction @Jump => m_Wrapper.m_PlayerController_Jump;
         public InputAction @movement => m_Wrapper.m_PlayerController_movement;
+        public InputAction @swordAttack => m_Wrapper.m_PlayerController_swordAttack;
         public InputActionMap Get() { return m_Wrapper.m_PlayerController; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -230,6 +253,9 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @movement.started -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnMovement;
                 @movement.performed -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnMovement;
                 @movement.canceled -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnMovement;
+                @swordAttack.started -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnSwordAttack;
+                @swordAttack.performed -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnSwordAttack;
+                @swordAttack.canceled -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnSwordAttack;
             }
             m_Wrapper.m_PlayerControllerActionsCallbackInterface = instance;
             if (instance != null)
@@ -243,6 +269,9 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @movement.started += instance.OnMovement;
                 @movement.performed += instance.OnMovement;
                 @movement.canceled += instance.OnMovement;
+                @swordAttack.started += instance.OnSwordAttack;
+                @swordAttack.performed += instance.OnSwordAttack;
+                @swordAttack.canceled += instance.OnSwordAttack;
             }
         }
     }
@@ -252,5 +281,6 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         void OnCamLook(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
+        void OnSwordAttack(InputAction.CallbackContext context);
     }
 }

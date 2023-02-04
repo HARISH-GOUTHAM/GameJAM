@@ -13,6 +13,7 @@ namespace Input
         public event UnityAction<Vector2> OnMouseMoveEv = delegate {  };
         public event UnityAction OnJumpEv = delegate {  };
         public event UnityAction<Vector2> OnMoveEv = delegate {  };
+        public event UnityAction OnSwordAttackEv = delegate {  };
         
         private PlayerInputs _playerInputs;
 
@@ -37,6 +38,11 @@ namespace Input
         public void OnMovement(InputAction.CallbackContext context)
         {
             OnMoveEv.Invoke(context.ReadValue<Vector2>());
+        }
+
+        public void OnSwordAttack(InputAction.CallbackContext context)
+        {
+            OnSwordAttackEv.Invoke();
         }
     }
 }

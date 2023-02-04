@@ -10,7 +10,11 @@ namespace harish.Player
     {
         public static PlayerData instance;
         public float health = 50;
+<<<<<<< HEAD
         public player_healthbar healthbar;
+=======
+        public float mana = 100;
+>>>>>>> bbfeea35b850b9e77fb3a6efacff17cc14355b0f
         public InputManagerScriptable inputManger;
         private void Start()
         {

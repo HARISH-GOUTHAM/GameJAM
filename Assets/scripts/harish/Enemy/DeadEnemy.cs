@@ -6,5 +6,7 @@ namespace harish.Enemy
     {
         public Transform spine;
         public bool canSuck = true;
+        public float manaAmount = 10f;
+        
     }
 }

@@ -2,7 +2,7 @@ using System;
 using harish.Player;
 using UnityEngine;
 
-namespace harish.Boss
+namespace harish.BossF
 {
     public class ChainSaw : MonoBehaviour
     {
@@ -22,7 +22,7 @@ namespace harish.Boss
         private float attackTime;
         void AttackPlayer()
         {
-            if (!(Time.time - attackTime > attackDelay))
+            if (!(Time.time - attackTime > attackDelay) || Boss.instance.state != BossState.Chainsaw)
             {
                 return;
             }

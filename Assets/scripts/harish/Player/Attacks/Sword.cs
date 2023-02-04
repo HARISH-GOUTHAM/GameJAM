@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using harish.Boss;
+
+using harish.BossF;
 using harish.Player;
 using UnityEngine;
 using UnityEngine.VFX;
@@ -15,6 +16,7 @@ public class Sword : MonoBehaviour
     [SerializeField] private float damage = 5f;
     [SerializeField] private float attackDelay = 1.0f;
     [SerializeField] private float slashStartDelay = .1f;
+    [SerializeField] private float range = 3f;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,17 +49,18 @@ public class Sword : MonoBehaviour
 
     void DamageBoss()
     {
-        if(Physics.Raycast(PlayerCam.position,PlayerCam.forward,out var hit, 2f))
+        if(Physics.Raycast(PlayerCam.position,PlayerCam.forward,out var hit, range))
         {
             if (hit.collider.CompareTag("BossArm"))
             {
+                Debug.Log("Enemy arm hit");
                 hit.collider.GetComponent<Arm>().TakeDamage(damage);
             }
         }
     }    
     void DamageEnemy()
     {
-        if(Physics.Raycast(PlayerCam.position,PlayerCam.forward,out var hit, 2f))
+        if(Physics.Raycast(PlayerCam.position,PlayerCam.forward,out var hit, range))
         {
             if (hit.collider.CompareTag("Enemy"))
             {

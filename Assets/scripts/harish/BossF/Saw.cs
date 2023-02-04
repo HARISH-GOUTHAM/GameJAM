@@ -24,7 +24,7 @@ public class Saw : MonoBehaviour
     void Update()
     {
         
-        if (isCollidingWithPlayer() && CanDamage())
+        if (isCollidingWithPlayer() && CanDamage() && Boss.instance.state ==BossState.Saw)
         {
             Debug.Log("cpo");
             PlayerData.instance.health -= damage;

@@ -21,6 +21,8 @@ public class Boss : MonoBehaviour
     public float lArmHealth = 50;
     public float rArmHealth = 20;
 
+    public int armDeadCount = 0;
+    
     [SerializeField] Animator bossAnim;
     [SerializeField] float stateChangeDelay = 1f;
     [SerializeField] float afterAttackDelay = 1f;
@@ -29,6 +31,21 @@ public class Boss : MonoBehaviour
 
     private int attacksCount = 0;
     
+    public static Boss instance;
+
+
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +55,12 @@ public class Boss : MonoBehaviour
    
     void StateUpdate()
     {
+        if (armDeadCount >= 2)
+        {
+            bossAnim.speed = 100;
+            
+        }
+        
         if (attacksCount > overheatAttackCount)
         {
             state = BossState.Overheat;

@@ -10,6 +10,7 @@ namespace harish.Player
     {
         public static PlayerData instance;
         public float health = 50;
+        public float mana = 100;
         public InputManagerScriptable inputManger;
 
         private void Awake()

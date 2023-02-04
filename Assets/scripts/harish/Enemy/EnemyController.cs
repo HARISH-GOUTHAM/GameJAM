@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using harish.Player;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public enum EnemyState
 {
@@ -21,6 +22,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float attackRange = 2;
     [SerializeField] private float attackSpeed = 1f;
     [SerializeField] private float attackDamage = 10f;
+    public Image Health_bar;
+    private float H_health;//ignore its for UI
     public Animator animator_;
     private Transform player;
     private NavMeshAgent agent;
@@ -30,6 +33,7 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        H_health = health;
         agent = GetComponent<NavMeshAgent>();
         agent.SetDestination(patrolPoints[0].position);
         player = PlayerData.instance.GetComponent<Transform>();
@@ -38,6 +42,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Health_bar.fillAmount = health / H_health;
         if(state==EnemyState.dead)
         {
             Debug.Log("ded");
@@ -48,10 +53,12 @@ public class EnemyController : MonoBehaviour
         }
         if (state == EnemyState.agro)
         {
+        animator_.SetBool("is_running", true);
             ChasePlayer();
         }
         else if (state == EnemyState.patrol)
         {
+        animator_.SetBool("is_walking", true);
             Patrol();
         }
       
@@ -62,7 +69,6 @@ public class EnemyController : MonoBehaviour
     int currentPatrolPoint = 0;
     void Patrol()
     {
-        animator_.SetBool("is_walking", true);
         if (agent.remainingDistance < 0.5f)
         {
             currentPatrolPoint++;
@@ -107,7 +113,6 @@ public class EnemyController : MonoBehaviour
     private float attackTime = 0;
     void ChasePlayer()
     {
-        animator_.SetBool("is_walking", true);
 
         agent.SetDestination(player.position);
         
@@ -115,12 +120,15 @@ public class EnemyController : MonoBehaviour
         {
             if (Time.time - attackTime > attackSpeed)
             {
+               
                 animator_.SetBool("is_attacking", true);
                 PlayerData.instance.health -= attackDamage;
                 Debug.Log(health);
                 Debug.Log("damaged plaer");
                 attackTime = Time.time;
-            }    
+                animator_.SetBool("is_attacking", false);
+
+            }
         }
     }
 }

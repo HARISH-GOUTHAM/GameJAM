@@ -135,9 +135,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec80ccb6df05ba5438523a53775b0f05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSpeed: 5
   gravity: -10
   groundCheckDist: 1.1
+  jumpHeight: 3
 --- !u!114 &1795445386816779354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,7 +180,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCam: {fileID: 1795445388319028437}
-  range: 1
+  rootPoint: {fileID: 0}
+  range: 3
+  attackDelay: 3
 --- !u!114 &2051848417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,9 +198,10 @@ MonoBehaviour:
   PlayerCam: {fileID: 1795445388319028437}
   swordAnim: {fileID: 2048531163}
   swordSlashVFX: {fileID: 1652641393453948934}
-  damage: 5
+  damage: 10
   attackDelay: 1
   slashStartDelay: 0.3
+  range: 3
 --- !u!1 &1795445388319028432
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,7 +228,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1795445388319028432}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.09718375, y: -0.6753216, z: -0.09046542, w: 0.72547376}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -234,7 +238,7 @@ Transform:
   - {fileID: 3042596650283145185}
   m_Father: {fileID: 1795445386816779353}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -15.26, y: -85.899, z: 0}
 --- !u!20 &1795445388319028434
 Camera:
   m_ObjectHideFlags: 0
@@ -260,7 +264,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 70
   orthographic: 0
   orthographic size: 5
   m_Depth: -1

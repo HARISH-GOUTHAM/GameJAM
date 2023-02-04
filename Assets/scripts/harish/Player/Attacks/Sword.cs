@@ -65,6 +65,7 @@ public class Sword : MonoBehaviour
             if (hit.collider.CompareTag("Enemy"))
             {
                 hit.collider.GetComponent<EnemyController>().health -= damage;
+                Debug.Log("hit");
             }
         }
     }

@@ -62,6 +62,24 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""b24a216a-53a2-491a-99f8-b7852d928c3a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SoulSuck"",
+                    ""type"": ""Button"",
+                    ""id"": ""22ff8815-ec1f-44a6-9591-4b77baf8d6cc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -152,6 +170,28 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                     ""action"": ""swordAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6ea49a6f-10b6-4100-89f8-42cd86b2ce60"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""47b8430c-b074-46e3-8e7b-3af77e4839e9"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SoulSuck"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -164,6 +204,8 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         m_PlayerController_Jump = m_PlayerController.FindAction("Jump", throwIfNotFound: true);
         m_PlayerController_movement = m_PlayerController.FindAction("movement", throwIfNotFound: true);
         m_PlayerController_swordAttack = m_PlayerController.FindAction("swordAttack", throwIfNotFound: true);
+        m_PlayerController_Shoot = m_PlayerController.FindAction("Shoot", throwIfNotFound: true);
+        m_PlayerController_SoulSuck = m_PlayerController.FindAction("SoulSuck", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -227,6 +269,8 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerController_Jump;
     private readonly InputAction m_PlayerController_movement;
     private readonly InputAction m_PlayerController_swordAttack;
+    private readonly InputAction m_PlayerController_Shoot;
+    private readonly InputAction m_PlayerController_SoulSuck;
     public struct PlayerControllerActions
     {
         private @PlayerInputs m_Wrapper;
@@ -235,6 +279,8 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_PlayerController_Jump;
         public InputAction @movement => m_Wrapper.m_PlayerController_movement;
         public InputAction @swordAttack => m_Wrapper.m_PlayerController_swordAttack;
+        public InputAction @Shoot => m_Wrapper.m_PlayerController_Shoot;
+        public InputAction @SoulSuck => m_Wrapper.m_PlayerController_SoulSuck;
         public InputActionMap Get() { return m_Wrapper.m_PlayerController; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -256,6 +302,12 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @swordAttack.started -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnSwordAttack;
                 @swordAttack.performed -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnSwordAttack;
                 @swordAttack.canceled -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnSwordAttack;
+                @Shoot.started -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnShoot;
+                @Shoot.performed -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnShoot;
+                @Shoot.canceled -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnShoot;
+                @SoulSuck.started -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnSoulSuck;
+                @SoulSuck.performed -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnSoulSuck;
+                @SoulSuck.canceled -= m_Wrapper.m_PlayerControllerActionsCallbackInterface.OnSoulSuck;
             }
             m_Wrapper.m_PlayerControllerActionsCallbackInterface = instance;
             if (instance != null)
@@ -272,6 +324,12 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
                 @swordAttack.started += instance.OnSwordAttack;
                 @swordAttack.performed += instance.OnSwordAttack;
                 @swordAttack.canceled += instance.OnSwordAttack;
+                @Shoot.started += instance.OnShoot;
+                @Shoot.performed += instance.OnShoot;
+                @Shoot.canceled += instance.OnShoot;
+                @SoulSuck.started += instance.OnSoulSuck;
+                @SoulSuck.performed += instance.OnSoulSuck;
+                @SoulSuck.canceled += instance.OnSoulSuck;
             }
         }
     }
@@ -282,5 +340,7 @@ public partial class @PlayerInputs : IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
         void OnSwordAttack(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
+        void OnSoulSuck(InputAction.CallbackContext context);
     }
 }

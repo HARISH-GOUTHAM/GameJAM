@@ -172,8 +172,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spine: {fileID: 1994004475}
-  canSuck: 0
-  manaAmount: 10
 --- !u!1 &153873697 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1795445386816779330, guid: dac99c8aacbb0dd41874f10ba35965c4, type: 3}

@@ -13,8 +13,7 @@ public class SoulSuck : MonoBehaviour
     [SerializeField] private float range = 1f;
 
     [SerializeField] private float attackDelay = 3f;
-    [SerializeField] private float manaAmount = 50f;
-    
+
     private bool isSucking = false;
     void Start()
     {
@@ -74,9 +73,6 @@ public class SoulSuck : MonoBehaviour
     
     void StopSucking()
     {
-
-        PlayerData.instance.mana += manaAmount;
-        
         isSucking = false;
         en.spine.GetComponent<Rigidbody>().isKinematic = false;
     }

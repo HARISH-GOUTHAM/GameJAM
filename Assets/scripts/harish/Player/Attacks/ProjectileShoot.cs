@@ -15,7 +15,6 @@ public class ProjectileShoot : MonoBehaviour
     [SerializeField] private float attackDelay = 1.0f;
     [SerializeField] private float range = 30f;
     [SerializeField] private float force = 100f;
-    [SerializeField] private float manaRequired = 20;
     
     // Start is called before the first frame update
     void Start()
@@ -28,12 +27,12 @@ public class ProjectileShoot : MonoBehaviour
     void PerformShoot()
     {
         
-        if (Time.time - attckTimer > attackDelay && PlayerData.instance.mana >= 20)
+        if (Time.time - attckTimer > attackDelay)
         {
             DamageBoss();
             DamageEnemy();
             
-            PlayerData.instance.mana -= manaRequired;
+            
             attckTimer = Time.time;
             Debug.Log("attaking");
         }
@@ -60,13 +59,8 @@ public class ProjectileShoot : MonoBehaviour
                 Debug.Log("Enemy arm hit");
                 hit.collider.GetComponent<Arm>().TakeDamage(damage);
             }
-            ShootProjectile(hit.point);
         }
-        else
-        {
-            ShootProjectile(PlayerCam.forward*100);
-        }
-        
+        ShootProjectile(hit.point);
     }    
     void DamageEnemy()
     {
@@ -76,8 +70,7 @@ public class ProjectileShoot : MonoBehaviour
             {
                 hit.collider.GetComponent<EnemyController>().health -= damage;
             }
-            ShootProjectile(hit.point);
         }
-        ShootProjectile(PlayerCam.forward*100);
+        ShootProjectile(hit.point);
     }
 }

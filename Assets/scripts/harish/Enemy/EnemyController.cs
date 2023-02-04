@@ -21,6 +21,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float attackRange = 2;
     [SerializeField] private float attackSpeed = 1f;
     [SerializeField] private float attackDamage = 10f;
+    public Animator animator_;
     private Transform player;
     private NavMeshAgent agent;
 
@@ -61,6 +62,7 @@ public class EnemyController : MonoBehaviour
     int currentPatrolPoint = 0;
     void Patrol()
     {
+        animator_.SetBool("is_walking", true);
         if (agent.remainingDistance < 0.5f)
         {
             currentPatrolPoint++;
@@ -105,14 +107,17 @@ public class EnemyController : MonoBehaviour
     private float attackTime = 0;
     void ChasePlayer()
     {
-        
+        animator_.SetBool("is_walking", true);
+
         agent.SetDestination(player.position);
         
         if(agent.remainingDistance < attackRange)
         {
             if (Time.time - attackTime > attackSpeed)
             {
+                animator_.SetBool("is_attacking", true);
                 PlayerData.instance.health -= attackDamage;
+                Debug.Log(health);
                 Debug.Log("damaged plaer");
                 attackTime = Time.time;
             }    

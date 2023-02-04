@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 10;
     [SerializeField] private float gravity = -10;
     [SerializeField] private float groundCheckDist = .51f;
+    [SerializeField] private float jumpHeight = 3;
     private Vector2 moveInp = Vector2.zero;
     
     
@@ -25,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
         playerController = GetComponent<CharacterController>();
 
         inputManager.OnMoveEv += GetMoveInput;
-
+        inputManager.OnJumpEv += Jump;
     }
 
     // Update is called once per frame
@@ -66,6 +67,23 @@ public class PlayerMovement : MonoBehaviour
         }
         
     }
+
+    private bool canJump = true;
+    void Jump()
+    {
+        if (IsGrounded())
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            canJump = false;
+            Invoke(nameof(ResetJump),.2f);
+        }
+    }
+
+    void ResetJump()
+    {
+        canJump = true;
+    }
+    
     void Movement()
     {
         playerController.Move((playerT.forward * moveInp.y + playerT.right * moveInp.x) * (moveSpeed * 0.01f));

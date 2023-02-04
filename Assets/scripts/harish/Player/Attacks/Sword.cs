@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using harish.Boss;
 using harish.Player;
 using UnityEngine;
 using UnityEngine.VFX;
@@ -32,7 +33,7 @@ public class Sword : MonoBehaviour
         
         if (Time.time - attckTimer > attackDelay)
         {
-            
+            DamageBoss();
             DamageEnemy();
             
            Invoke(nameof(startSlash),slashStartDelay);
@@ -48,9 +49,9 @@ public class Sword : MonoBehaviour
     {
         if(Physics.Raycast(PlayerCam.position,PlayerCam.forward,out var hit, 2f))
         {
-            if (hit.collider.CompareTag("Enemy"))
+            if (hit.collider.CompareTag("BossArm"))
             {
-                hit.collider.GetComponent<EnemyController>().health -= damage;
+                hit.collider.GetComponent<Arm>().TakeDamage(damage);
             }
         }
     }    

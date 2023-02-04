@@ -17,7 +17,7 @@ public class SoulSuck : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SuckEnemy();
+        //SuckEnemy();
     }
     
     void SuckEnemy()
@@ -26,13 +26,10 @@ public class SoulSuck : MonoBehaviour
         
         if (Physics.Raycast(playerCam.position, playerCam.forward, out hit, range))
         {
-                Debug.Log("Success pt 2");
             if (hit.collider.gameObject.CompareTag("Enemy"))
             {
-                Debug.Log("Success pt 1");
                 if (hit.transform.GetComponent<EnemyController>().state == EnemyState.dead)
                 {
-                    Debug.Log("Success");
                 }
             }
         }

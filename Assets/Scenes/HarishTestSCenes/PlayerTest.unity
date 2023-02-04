@@ -443,7 +443,7 @@ Transform:
   m_GameObject: {fileID: 761049035}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.8915, y: 2.8915, z: 2.8915}
+  m_LocalScale: {x: 12.475666, y: 12.475666, z: 12.475666}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1696,6 +1696,8 @@ GameObject:
   - component: {fileID: 7431221267332280631}
   - component: {fileID: 8170611951145472835}
   - component: {fileID: 6406421521384709593}
+  - component: {fileID: 8170611951145472836}
+  - component: {fileID: 8170611951145472837}
   m_Layer: 0
   m_Name: Saw
   m_TagString: Untagged
@@ -1806,6 +1808,7 @@ GameObject:
   - component: {fileID: 4364283437026200816}
   - component: {fileID: 4364283437026200815}
   - component: {fileID: 4364283437026200814}
+  - component: {fileID: 4364283437026200817}
   m_Layer: 0
   m_Name: exterminator
   m_TagString: Untagged
@@ -1821,7 +1824,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4024771131606111831}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -47.29679, y: 10.174288, z: -6.4885616}
+  m_LocalPosition: {x: 12.4, y: 1.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1907,6 +1910,26 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &4364283437026200817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4024771131606111831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d895a0eea52adc49a3057bb1a1dfc7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  lArmHealth: 50
+  rArmHealth: 20
+  bossAnim: {fileID: 4364283437026200815}
+  stateChangeDelay: 1
+  afterAttackDelay: 1
+  overheatDelay: 7
+  overheatAttackCount: 5
 --- !u!23 &4770421972680058833
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2455,6 +2478,33 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 694291349199332614}
   m_Mesh: {fileID: 2534964839176971238, guid: 1ece3053f471ef643a4ac45c0614f8a6, type: 3}
+--- !u!114 &8170611951145472836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 694291349199332614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10d8ff4fdebfff44f9b5a60e8864b6d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateRate: 2
+  damage: 10
+--- !u!65 &8170611951145472837
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 694291349199332614}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.01734865, y: 0.018989984, z: 0.020000055}
+  m_Center: {x: -0.001022374, y: 0.00009741781, z: 0.00000011855825}
 --- !u!4 &8488994056690871103
 Transform:
   m_ObjectHideFlags: 0

@@ -24,8 +24,10 @@ public class Boss : MonoBehaviour
     [SerializeField] Animator bossAnim;
     [SerializeField] float stateChangeDelay = 1f;
     [SerializeField] float afterAttackDelay = 1f;
+    [SerializeField] private float overheatDelay = 7f;
+    [SerializeField] private int overheatAttackCount = 5;
 
-    private bool isAttacking = false;
+    private int attacksCount = 0;
     
     // Start is called before the first frame update
     void Start()
@@ -33,16 +35,20 @@ public class Boss : MonoBehaviour
         StateUpdate();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-        
-    }
-
+   
     void StateUpdate()
     {
+        if (attacksCount > overheatAttackCount)
+        {
+            state = BossState.Overheat;
+            CallStateFunction(BossState.Overheat);
+            attacksCount = 0;
+            return;
+            
+        }
+        
         state = GetRandomState();
+        attacksCount++;
         CallStateFunction(state);
     }
 
@@ -61,7 +67,7 @@ public class Boss : MonoBehaviour
                 
                 break;
             case BossState.Overheat:
-                
+                Overheat();
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -96,6 +102,14 @@ public class Boss : MonoBehaviour
         SetIdleState();
     }
 
+    void Overheat()
+    {
+        bossAnim.SetBool("overheat",true);
+        
+        Invoke(nameof(ResetAnimatorVariables),.1f);
+        Invoke(nameof(SetIdleState),overheatDelay);
+    }
+
     void SetIdleState()
     {
         state = BossState.Idle;
@@ -106,5 +120,6 @@ public class Boss : MonoBehaviour
     {
         bossAnim.SetBool("chainsawAttack",false);
         bossAnim.SetBool("sawAttack",false);
+        bossAnim.SetBool("overheat",false);
     }
 }

@@ -84,7 +84,7 @@ public class EnemyController : MonoBehaviour
     
     void Vision()
     {
-        Debug.Log(Vector3.Angle(transform.forward, player.transform.position - transform.position));
+
         if(Vector3.Angle(transform.forward, player.transform.position - transform.position) < fov)
         {
             RaycastHit hit;

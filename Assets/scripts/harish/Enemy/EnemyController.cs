@@ -37,6 +37,14 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(state==EnemyState.dead)
+        {
+            Debug.Log("ded");
+            agent.isStopped = true;
+            
+            Destroy(gameObject);
+            return;
+        }
         if (state == EnemyState.agro)
         {
             ChasePlayer();
@@ -45,12 +53,7 @@ public class EnemyController : MonoBehaviour
         {
             Patrol();
         }
-        else
-        {
-            Debug.Log("ded");
-            agent.isStopped = true;
-            
-        }
+      
         Vision();
         DeadCheck();
     }

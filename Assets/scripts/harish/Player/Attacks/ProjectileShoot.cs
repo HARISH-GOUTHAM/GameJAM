@@ -16,14 +16,17 @@ public class ProjectileShoot : MonoBehaviour
     [SerializeField] private float range = 30f;
     [SerializeField] private float force = 100f;
     [SerializeField] private float manaRequired = 20;
-    
+
     // Start is called before the first frame update
     void Start()
     {
         PlayerData.instance.inputManger.OnShootEv += PerformShoot;
     }
 
-   
+    private void Update()
+    {
+
+    }
     private float attckTimer = 0;
     void PerformShoot()
     {

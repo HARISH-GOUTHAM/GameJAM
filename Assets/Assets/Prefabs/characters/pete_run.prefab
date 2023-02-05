@@ -316,7 +316,7 @@ MonoBehaviour:
   attackSpeed: 1
   attackDamage: 10
   animator_: {fileID: 35210098}
-  health_bar: {fileID: 0}
+  health_bar: {fileID: 3712725349381362979}
   health: 10
 --- !u!1 &950953429808713423
 GameObject:

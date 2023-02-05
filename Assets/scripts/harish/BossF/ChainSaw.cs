@@ -22,7 +22,7 @@ namespace harish.BossF
         private float attackTime;
         void AttackPlayer()
         {
-            if (!(Time.time - attackTime > attackDelay) || Boss.instance.state != BossState.Chainsaw)
+            if (!(Time.time - attackTime > attackDelay) || Boss.instance.state==BossState.Overheat)
             {
                 return;
             }

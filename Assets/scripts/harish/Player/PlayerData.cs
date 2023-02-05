@@ -27,6 +27,19 @@ namespace harish.Player
                 Destroy(this);
             }
         }
+
+        private void Update()
+        {
+            if (health > 100)
+            {
+                health = 100;
+            }
+            if(mana> 100)
+            {
+                mana = 100;
+            }
+        }
+        
     }
 }
         

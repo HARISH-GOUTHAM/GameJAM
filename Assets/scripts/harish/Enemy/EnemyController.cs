@@ -78,7 +78,8 @@ public class EnemyController : MonoBehaviour
             
             agent.SetDestination(patrolPoints[currentPatrolPoint].position);
             
-        }        
+        }
+        
     }
 
   

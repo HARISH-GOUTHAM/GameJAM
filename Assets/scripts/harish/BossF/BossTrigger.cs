@@ -12,7 +12,7 @@ namespace harish.BossF
             if (other.CompareTag("Player"))
             {
                 Boss.instance.enabled = true;
-                
+                coll.enabled = true;
             }
             
         }

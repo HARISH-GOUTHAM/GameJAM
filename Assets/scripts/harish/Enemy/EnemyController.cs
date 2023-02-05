@@ -21,7 +21,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float attackRange = 2;
     [SerializeField] private float attackSpeed = 1f;
     [SerializeField] private float attackDamage = 10f;
-    public Animator animator_;
+    [SerializeField] private Animator animator;
+    
     private Transform player;
     private NavMeshAgent agent;
     public health_bar_Script health_bar;
@@ -53,15 +54,7 @@ public class EnemyController : MonoBehaviour
         }
         if (state == EnemyState.agro)
         {
-        if(agent.remainingDistance<attackRange)
-        {
-            animator_.SetBool("is_attacking", true);
-            }
-            else
-            {
-                animator_.SetBool("is_running", true);
-
-            }
+            animator.SetBool("isRunning",true);
             ChasePlayer();
         }
         else if (state == EnemyState.patrol)
@@ -76,7 +69,7 @@ public class EnemyController : MonoBehaviour
     int currentPatrolPoint = 0;
     void Patrol()
     {
-        animator_.SetBool("is_walking", true);
+        
         if (agent.remainingDistance < 0.5f)
         {
             currentPatrolPoint++;
@@ -121,8 +114,7 @@ public class EnemyController : MonoBehaviour
     private float attackTime = 0;
     void ChasePlayer()
     {
-        animator_.SetBool("is_running", true);
-
+        
         agent.SetDestination(player.position);
         
         if(agent.remainingDistance < attackRange)
@@ -131,15 +123,35 @@ public class EnemyController : MonoBehaviour
             {
                 //animator_.SetBool("is_running", false);
 
-              
-                PlayerData.instance.health -= attackDamage;
-                Debug.Log(health);
-                Debug.Log("damaged plaer");
+              Invoke(nameof(performAxeAttak), 1.8f);
+              animator.SetBool("isAttacking", true);
+                
                 attackTime = Time.time;
                // animator_.SetBool("is_attacking", false);
+               agent.speed = 0;
 
 
             }
         }
+        else
+        {
+            animator.SetBool("isAttacking",false);
+        }
+    }
+    
+    void performAxeAttak()
+    {
+        if(agent.remainingDistance<attackRange)
+         PlayerData.instance.health -= attackDamage;
+        Debug.Log(health);
+        Debug.Log("damaged plaer");
+        agent.speed = 3.5f;
+        
+        animator.SetBool("isAttacking",false);
+    }
+
+    void stopAttack()
+    {
+        
     }
 }

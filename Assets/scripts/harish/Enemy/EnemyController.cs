@@ -25,6 +25,7 @@ public class EnemyController : MonoBehaviour
     private Transform player;
     private NavMeshAgent agent;
     public health_bar_Script health_bar;
+    public GameObject ragdoll;
 
     public float health = 10;
     
@@ -45,8 +46,9 @@ public class EnemyController : MonoBehaviour
         {
             Debug.Log("ded");
             agent.isStopped = true;
-            
+            Instantiate(ragdoll, transform.position,transform.rotation);
             Destroy(gameObject);
+            
             return;
         }
         if (state == EnemyState.agro)

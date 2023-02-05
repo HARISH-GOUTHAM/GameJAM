@@ -260,7 +260,7 @@ Animator:
   m_GameObject: {fileID: 698050078780304656}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 574722e55800a2d43aa96803f2e7a8f3, type: 2}
+  m_Controller: {fileID: 9100000, guid: 68f22e5518d2c0840ace9e867cca9308, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -312,11 +312,12 @@ MonoBehaviour:
   - {fileID: 0}
   fov: 40
   visionRange: 10
-  attackRange: 5
+  attackRange: 2
   attackSpeed: 1
   attackDamage: 10
-  animator_: {fileID: 35210098}
+  animator: {fileID: 35210098}
   health_bar: {fileID: 3712725349381362979}
+  ragdoll: {fileID: 1655578703872417918, guid: 488d9760b5c6ef24f875ea5c5f04e70a, type: 3}
   health: 10
 --- !u!1 &950953429808713423
 GameObject:

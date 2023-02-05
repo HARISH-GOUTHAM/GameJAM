@@ -182,26 +182,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 35210097, guid: 8cb2f6dec0994b049b4cf9605f5a73f7, type: 3}
-      propertyPath: ragdoll
-      value: 
-      objectReference: {fileID: 1655578703872417918, guid: 488d9760b5c6ef24f875ea5c5f04e70a, type: 3}
-    - target: {fileID: 35210097, guid: 8cb2f6dec0994b049b4cf9605f5a73f7, type: 3}
-      propertyPath: animator
-      value: 
-      objectReference: {fileID: 1139402806}
-    - target: {fileID: 35210097, guid: 8cb2f6dec0994b049b4cf9605f5a73f7, type: 3}
-      propertyPath: attackRange
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 35210097, guid: 8cb2f6dec0994b049b4cf9605f5a73f7, type: 3}
-      propertyPath: attackSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 35210097, guid: 8cb2f6dec0994b049b4cf9605f5a73f7, type: 3}
-      propertyPath: patrolPoints.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 35210097, guid: 8cb2f6dec0994b049b4cf9605f5a73f7, type: 3}
       propertyPath: patrolPoints.Array.data[0]
       value: 
       objectReference: {fileID: 740091941}
@@ -217,14 +197,6 @@ PrefabInstance:
       propertyPath: patrolPoints.Array.data[3]
       value: 
       objectReference: {fileID: 303773813}
-    - target: {fileID: 35210097, guid: 8cb2f6dec0994b049b4cf9605f5a73f7, type: 3}
-      propertyPath: patrolPoints.Array.data[4]
-      value: 
-      objectReference: {fileID: 1726415582}
-    - target: {fileID: 35210098, guid: 8cb2f6dec0994b049b4cf9605f5a73f7, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 68f22e5518d2c0840ace9e867cca9308, type: 2}
     - target: {fileID: 208335968956217258, guid: 8cb2f6dec0994b049b4cf9605f5a73f7, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -558,11 +530,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
---- !u!95 &1139402806 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 35210098, guid: 8cb2f6dec0994b049b4cf9605f5a73f7, type: 3}
-  m_PrefabInstance: {fileID: 277222851}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1315098302
 PrefabInstance:
   m_ObjectHideFlags: 0

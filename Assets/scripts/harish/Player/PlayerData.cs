@@ -13,6 +13,7 @@ namespace harish.Player
         public float mana = 100;
         public InputManagerScriptable inputManger;
 
+
         private void Awake()
         {
 

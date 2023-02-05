@@ -24,12 +24,14 @@ public class EnemyController : MonoBehaviour
     public Animator animator_;
     private Transform player;
     private NavMeshAgent agent;
+    public health_bar_Script health_bar;
 
     public float health = 10;
     
     // Start is called before the first frame update
     void Start()
     {
+        health_bar.set_max_health(health);
         agent = GetComponent<NavMeshAgent>();
         agent.SetDestination(patrolPoints[0].position);
         player = PlayerData.instance.GetComponent<Transform>();
@@ -38,6 +40,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        health_bar.set_health(health);
         if(state==EnemyState.dead)
         {
             Debug.Log("ded");
@@ -48,6 +51,15 @@ public class EnemyController : MonoBehaviour
         }
         if (state == EnemyState.agro)
         {
+        if(agent.remainingDistance<attackRange)
+        {
+            animator_.SetBool("is_attacking", true);
+            }
+            else
+            {
+                animator_.SetBool("is_running", true);
+
+            }
             ChasePlayer();
         }
         else if (state == EnemyState.patrol)
@@ -107,7 +119,7 @@ public class EnemyController : MonoBehaviour
     private float attackTime = 0;
     void ChasePlayer()
     {
-        animator_.SetBool("is_walking", true);
+        animator_.SetBool("is_running", true);
 
         agent.SetDestination(player.position);
         
@@ -115,12 +127,17 @@ public class EnemyController : MonoBehaviour
         {
             if (Time.time - attackTime > attackSpeed)
             {
-                animator_.SetBool("is_attacking", true);
+                //animator_.SetBool("is_running", false);
+
+              
                 PlayerData.instance.health -= attackDamage;
                 Debug.Log(health);
                 Debug.Log("damaged plaer");
                 attackTime = Time.time;
-            }    
+               // animator_.SetBool("is_attacking", false);
+
+
+            }
         }
     }
 }

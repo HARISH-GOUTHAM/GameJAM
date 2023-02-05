@@ -56,5 +56,10 @@ namespace Input
         {
             OnSuckEv.Invoke();
         }
+
+        private void OnDisable()
+        {
+            _playerInputs.Disable();
+        }
     }
 }

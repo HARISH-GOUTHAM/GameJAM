@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
     
     void Movement()
     {
-        playerController.Move((playerT.forward * moveInp.y + playerT.right * moveInp.x) * (moveSpeed * 0.01f));
+        playerController.Move((playerT.forward * moveInp.y + playerT.right * moveInp.x) * (moveSpeed * 0.01f) * Time.deltaTime);
         Debug.Log("moved ig");
     }
 

@@ -109,7 +109,7 @@ public class Boss : MonoBehaviour
     
     BossState GetRandomState()
     {
-        if (Random.Range(0, 3) == 0)
+        if (Random.Range(0f, 2f) > 1)
         {
             return BossState.Chainsaw;
         }

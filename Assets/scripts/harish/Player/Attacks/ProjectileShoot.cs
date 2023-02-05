@@ -51,7 +51,7 @@ public class ProjectileShoot : MonoBehaviour
         
         proj = Instantiate(projectile, startPoint.position, Quaternion.identity);
         proj.transform.rotation = Quaternion.LookRotation(dest - startPoint.position);
-        proj.GetComponent<Rigidbody>().velocity = (dest - startPoint.position).normalized * force;
+        proj.GetComponent<Rigidbody>().velocity = (startPoint.forward).normalized * force;
     }
     
     void DamageBoss()

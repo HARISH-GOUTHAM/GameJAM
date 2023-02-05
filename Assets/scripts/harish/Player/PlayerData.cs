@@ -41,7 +41,9 @@ namespace harish.Player
             }
             if(health<=0)
             {
-               transform.position = checkpoint.position;
+                GetComponent<CharacterController>().enabled = false;
+                transform.position = checkpoint.position;
+                GetComponent<CharacterController>().enabled = true;
                 health = 100;
                 mana = 100;
             }

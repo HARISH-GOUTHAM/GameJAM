@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using harish.Player;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 
@@ -66,6 +67,7 @@ public class Boss : MonoBehaviour
         if (armDeadCount >= 2)
         {
             bossAnim.speed = 100;
+            Invoke(nameof(InvokeNextScene),5);
             
         }
         
@@ -161,6 +163,11 @@ public class Boss : MonoBehaviour
         Vector3 rotation = Quaternion.Lerp(rotatePoint.rotation, lookRotation, Time.deltaTime * rotateSpeed).eulerAngles;
         rotatePoint.rotation = Quaternion.Euler(0f, rotation.y + rotationOffset, 0f);
         
+    }
+
+    void InvokeNextScene()
+    {
+        SceneManager.LoadScene(1);
     }
     
 }

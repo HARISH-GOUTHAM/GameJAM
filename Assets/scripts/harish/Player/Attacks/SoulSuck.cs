@@ -14,6 +14,7 @@ public class SoulSuck : MonoBehaviour
 
     [SerializeField] private float attackDelay = 3f;
     [SerializeField] private float manaAmount = 50f;
+    public health_bar_Script mana_bar;
     
     private bool isSucking = false;
     void Start()
@@ -24,7 +25,7 @@ public class SoulSuck : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+    mana_bar.set_health(manaAmount);
         SuckEnemy();
     }
 

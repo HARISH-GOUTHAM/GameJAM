@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using harish.Player;
 using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -28,7 +29,9 @@ public class Boss : MonoBehaviour
     [SerializeField] float afterAttackDelay = 1f;
     [SerializeField] private float overheatDelay = 7f;
     [SerializeField] private int overheatAttackCount = 5;
-
+    [SerializeField] private Transform rotatePoint;
+    [SerializeField] private float rotationOffset = 90;
+    [SerializeField] private float rotateSpeed = 5f;
     private int attacksCount = 0;
     
     public static Boss instance;
@@ -52,7 +55,12 @@ public class Boss : MonoBehaviour
         StateUpdate();
     }
 
-   
+    private void Update()
+    {
+        if(state == BossState.Saw)
+            RotateTowardsPlayer();
+    }
+
     void StateUpdate()
     {
         if (armDeadCount >= 2)
@@ -145,4 +153,14 @@ public class Boss : MonoBehaviour
         bossAnim.SetBool("sawAttack",false);
         bossAnim.SetBool("overheat",false);
     }
+
+    void RotateTowardsPlayer()
+    {
+        Vector3 dir =  PlayerData.instance.transform.position - rotatePoint.position ;
+        Quaternion lookRotation = Quaternion.LookRotation(dir);
+        Vector3 rotation = Quaternion.Lerp(rotatePoint.rotation, lookRotation, Time.deltaTime * rotateSpeed).eulerAngles;
+        rotatePoint.rotation = Quaternion.Euler(0f, rotation.y + rotationOffset, 0f);
+        
+    }
+    
 }

@@ -17,6 +17,9 @@ public class Sword : MonoBehaviour
     [SerializeField] private float attackDelay = 1.0f;
     [SerializeField] private float slashStartDelay = .1f;
     [SerializeField] private float range = 3f;
+    [SerializeField] private AudioSource slashSound;
+    [SerializeField] private float pitchRandomaRange = .1f;
+    [SerializeField] private float volumeRandomaRange = .1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,13 +34,11 @@ public class Sword : MonoBehaviour
     private float attckTimer = 0;
     void performSlash()
     {
-        
-        
         if (Time.time - attckTimer > attackDelay)
         {
             DamageBoss();
             DamageEnemy();
-            
+            playSlash();
            Invoke(nameof(startSlash),slashStartDelay);
             swordAnim.SetBool("isAttacking",true);
             Invoke(nameof(stopAnimation), 0.5f);
@@ -77,5 +78,14 @@ public class Sword : MonoBehaviour
     void startSlash()
     {
         swordSlashVFX.Play();
+    }
+    
+    void playSlash()
+    {
+        //randomize the pitch
+        slashSound.pitch = Random.Range(1 - pitchRandomaRange, 1 + pitchRandomaRange);
+        //randomize the volume
+        slashSound.volume = Random.Range(1 - volumeRandomaRange, 1 + volumeRandomaRange);
+        slashSound.Play();
     }
 }
